@@ -48,7 +48,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: len(h)
+    value: '8'
   states:
     bus_sink: false
     bus_source: false
@@ -60,12 +60,12 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: (1,1,1,1,1,1,1,1)
+    value: formas.sinc(Sps,ntaps)
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [880, 28]
+    coordinate: [881, 28]
     rotation: 0
     state: enabled
 - name: ntaps
@@ -195,7 +195,7 @@ blocks:
     repeat: 'True'
     tags: '[]'
     type: float
-    vector: (1,-1,1,-1)
+    vector: (1, -1, 1, -1)
     vlen: '1'
   states:
     bus_sink: false
@@ -464,7 +464,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [748, 231]
+    coordinate: [754, 200]
     rotation: 270
     state: enabled
 - name: virtual_sink_0_0
@@ -477,7 +477,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [429, 237]
+    coordinate: [432, 204]
     rotation: 270
     state: enabled
 - name: virtual_source_0_0
