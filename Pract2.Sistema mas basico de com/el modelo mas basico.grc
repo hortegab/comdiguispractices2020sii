@@ -268,22 +268,6 @@ blocks:
     coordinate: [671, 9]
     rotation: 0
     state: enabled
-- name: E3TRadio_decisor_fb_0
-  id: E3TRadio_decisor_fb
-  parameters:
-    Umbral: '0.'
-    affinity: ''
-    alias: ''
-    comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [520, 500]
-    rotation: 180
-    state: true
 - name: E3TRadio_diezma_ff_0
   id: E3TRadio_diezma_ff
   parameters:
@@ -298,7 +282,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [662, 491]
+    coordinate: [503, 488]
     rotation: 180
     state: enabled
 - name: b_Canal_AWGN_ff_0
@@ -317,7 +301,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [872, 272]
+    coordinate: [629, 281]
     rotation: 270
     state: enabled
 - name: b_EYE_Timing_f_0
@@ -344,72 +328,10 @@ blocks:
     coordinate: [952, 1156]
     rotation: 0
     state: enabled
-- name: b_Eye_Diagram_simple_f_0
-  id: b_Eye_Diagram_simple_f
+- name: b_binary_bipolar_source1_f_0
+  id: b_binary_bipolar_source1_f
   parameters:
-    AlphaLineas: '0.5'
-    Delay_i: '0'
-    GrosorLineas: '20'
-    N_eyes: '2'
-    Samprate: samp_rate
-    Sps: Sps
-    Title: '"Eye Diagram"'
-    Ymax: '2'
-    Ymin: '-2'
-    affinity: ''
-    alias: ''
-    comment: ''
-    gui_hint: menu@0:1,0,1,1
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [552, 1260]
-    rotation: 0
-    state: disabled
-- name: b_PSD_0_0
-  id: b_PSD
-  parameters:
-    Ensayos: '1000000'
-    N: '1024'
-    Titulo: '''PSD in T3'''
-    Ymax: 1e-5
-    affinity: ''
-    alias: ''
-    comment: ''
-    gui_hint: menu@2:0,0,1,1
-    samp_rate_audio: samp_rate
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [600, 1444]
-    rotation: 0
-    state: disabled
-- name: b_PSD_0_0_0
-  id: b_PSD
-  parameters:
-    Ensayos: '1000000'
-    N: '1024'
-    Titulo: '''PSD in  R3'''
-    Ymax: 1e-5
-    affinity: ''
-    alias: ''
-    comment: ''
-    gui_hint: menu@2:1,0,1,1
-    samp_rate_audio: samp_rate
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [600, 1564]
-    rotation: 0
-    state: disabled
-- name: b_binary_bipolar_source_f_0
-  id: b_binary_bipolar_source_f
-  parameters:
-    Am: Ab
-    Spb: '1'
+    Am: '1.'
     affinity: ''
     alias: ''
     comment: ''
@@ -419,73 +341,8 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [16, 180]
+    coordinate: [8, 184]
     rotation: 0
-    state: enabled
-- name: b_eye_diagram2_f_1
-  id: b_eye_diagram2_f
-  parameters:
-    Delay: Retardo_ojo
-    Nvol: '256'
-    Sps: Sps
-    affinity: ''
-    alias: ''
-    comment: ''
-    samp_rate: samp_rate
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [312, 1132]
-    rotation: 0
-    state: disabled
-- name: b_eye_diagram_f_0
-  id: b_eye_diagram_f
-  parameters:
-    Delay: Retardo_ojo
-    Sps: Sps
-    affinity: ''
-    alias: ''
-    comment: ''
-    samp_rate: samp_rate
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [320, 1348]
-    rotation: 0
-    state: disabled
-- name: b_unipolar2bipolar_ff_0
-  id: b_unipolar2bipolar_ff
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [232, 504]
-    rotation: 180
-    state: enabled
-- name: blocks_char_to_float_0
-  id: blocks_char_to_float
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    scale: '1'
-    vlen: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [400, 500]
-    rotation: 180
     state: true
 - name: blocks_delay_0
   id: blocks_delay
@@ -558,7 +415,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [16, 504]
+    coordinate: [18, 502]
     rotation: 180
     state: enabled
 - name: blocks_vector_source_x_0
@@ -581,6 +438,51 @@ blocks:
     coordinate: [16, 92]
     rotation: 0
     state: disabled
+- name: epy_block_0
+  id: epy_block
+  parameters:
+    _source_code: "\"\"\"\nEmbedded Python Blocks:\n\nEach time this file is saved,\
+      \ GRC will instantiate the first class it finds\nto get ports and parameters\
+      \ of your block. The arguments to __init__  will\nbe the parameters. All of\
+      \ them are required to have default values!\n\"\"\"\n\nimport numpy as np\n\
+      from gnuradio import gr\n\n\nclass blk(gr.sync_block):  # other base classes\
+      \ are basic_block, decim_block, interp_block\n    \"\"\"Hecho por Homero Ortega\
+      \ Boada, UIS 2020. Entrega como salida 1 si la entrada supera el umbral cero,\
+      \ pero -1 si no lo supera. Tanto la entrada como la salida es un valor de tipo\
+      \ float. Se ha logrado vectorizar la operacion asi: al vector de entrada in0\
+      \ se le aplica un limitador entre 0 y 1. Osea que los valores mayores a 1 se\
+      \ convierten a 1, los menores de cero a cero, con lo cual tendremos valores\
+      \ entre cero y 1. Luego se aplica un redondeo hacia arriba, con lo cual solo\
+      \ tendremos 0s o 1s. Luego se multiplica todo por2 y se resta 1, con lo cual\
+      \ solo tendremos -1s y 1s\"\"\"\n\n    def __init__(self):  # only default arguments\
+      \ here\n        \"\"\"arguments to this function show up as parameters in GRC\"\
+      \"\"\n        gr.sync_block.__init__(\n            self,\n            name='e_bipolar_decisor_ff',\
+      \   # will show up in GRC\n            in_sig=[np.float32],\n            out_sig=[np.float32])\n\
+      \        #self.Umbral=Umbral\n\n    def work(self, input_items, output_items):\n\
+      \        in0 = input_items[0]\n        out = output_items[0]\n        # Signal\
+      \ processing\n        out[:] = np.ceil(np.clip(in0,0,1))*2-1\n        #out[:]\
+      \ = [float(v>self.Umbral) for v in in0]\n        return len(output_items[0])\n"
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    _io_cache: '(''e_bipolar_decisor_ff'', ''blk'', [], [(''0'', ''float'', 1)], [(''0'',
+      ''float'', 1)], ''Hecho por Homero Ortega Boada, UIS 2020. Entrega como salida
+      1 si la entrada supera el umbral cero, pero -1 si no lo supera. Tanto la entrada
+      como la salida es un valor de tipo float. Se ha logrado vectorizar la operacion
+      asi: al vector de entrada in0 se le aplica un limitador entre 0 y 1. Osea que
+      los valores mayores a 1 se convierten a 1, los menores de cero a cero, con lo
+      cual tendremos valores entre cero y 1. Luego se aplica un redondeo hacia arriba,
+      con lo cual solo tendremos 0s o 1s. Luego se multiplica todo por2 y se resta
+      1, con lo cual solo tendremos -1s y 1s'', [])'
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [278, 502]
+    rotation: 180
+    state: true
 - name: interp_fir_filter_xxx_0
   id: interp_fir_filter_xxx
   parameters:
@@ -597,7 +499,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [426, 178]
+    coordinate: [293, 177]
     rotation: 0
     state: enabled
 - name: menu
@@ -1168,7 +1070,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [710, 258]
+    coordinate: [552, 274]
     rotation: 270
     state: enabled
 - name: vs_0_0
@@ -1181,7 +1083,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [714, 376]
+    coordinate: [555, 373]
     rotation: 90
     state: enabled
 - name: vs_0_0_0
@@ -1194,7 +1096,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [603, 372]
+    coordinate: [444, 369]
     rotation: 90
     state: enabled
 - name: vs_0_0_1
@@ -1223,32 +1125,6 @@ blocks:
     coordinate: [202, 261]
     rotation: 270
     state: enabled
-- name: vso_0_0
-  id: virtual_source
-  parameters:
-    alias: ''
-    comment: ''
-    stream_id: T3
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [48, 1468]
-    rotation: 0
-    state: disabled
-- name: vso_0_1_0
-  id: virtual_source
-  parameters:
-    alias: ''
-    comment: ''
-    stream_id: R3
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [48, 1596]
-    rotation: 0
-    state: disabled
 - name: vso_0_1_0_0
   id: virtual_source
   parameters:
@@ -1383,29 +1259,22 @@ blocks:
     state: enabled
 
 connections:
-- [E3TRadio_decisor_fb_0, '0', blocks_char_to_float_0, '0']
-- [E3TRadio_diezma_ff_0, '0', E3TRadio_decisor_fb_0, '0']
+- [E3TRadio_diezma_ff_0, '0', epy_block_0, '0']
 - [E3TRadio_diezma_ff_0, '0', vs_0_0_0, '0']
 - [b_Canal_AWGN_ff_0, '0', E3TRadio_diezma_ff_0, '0']
 - [b_Canal_AWGN_ff_0, '0', vs_0_0, '0']
-- [b_binary_bipolar_source_f_0, '0', interp_fir_filter_xxx_0, '0']
-- [b_binary_bipolar_source_f_0, '0', vs_0_2, '0']
-- [b_unipolar2bipolar_ff_0, '0', blocks_null_sink_0, '0']
-- [b_unipolar2bipolar_ff_0, '0', vs_0_0_1, '0']
-- [blocks_char_to_float_0, '0', b_unipolar2bipolar_ff_0, '0']
+- [b_binary_bipolar_source1_f_0, '0', interp_fir_filter_xxx_0, '0']
+- [b_binary_bipolar_source1_f_0, '0', vs_0_2, '0']
 - [blocks_delay_0, '0', qtgui_time_sink_x_0, '0']
 - [blocks_delay_0_1, '0', qtgui_time_sink_x_0_1_0, '0']
 - [blocks_delay_0_1_0, '0', qtgui_time_sink_x_0_1, '0']
 - [blocks_vector_source_x_0, '0', interp_fir_filter_xxx_0, '0']
 - [blocks_vector_source_x_0, '0', vs_0_2, '0']
+- [epy_block_0, '0', blocks_null_sink_0, '0']
+- [epy_block_0, '0', vs_0_0_1, '0']
 - [interp_fir_filter_xxx_0, '0', b_Canal_AWGN_ff_0, '0']
 - [interp_fir_filter_xxx_0, '0', vs_0, '0']
-- [vso_0_0, '0', b_PSD_0_0, '0']
-- [vso_0_1_0, '0', b_PSD_0_0_0, '0']
 - [vso_0_1_0_0, '0', b_EYE_Timing_f_0, '0']
-- [vso_0_1_0_0, '0', b_Eye_Diagram_simple_f_0, '0']
-- [vso_0_1_0_0, '0', b_eye_diagram2_f_1, '0']
-- [vso_0_1_0_0, '0', b_eye_diagram_f_0, '0']
 - [vso_0_1_0_0_0, '0', blocks_delay_0, '0']
 - [vso_0_1_0_0_0_0, '0', qtgui_time_sink_x_0, '1']
 - [vso_0_1_0_0_0_0_0, '0', qtgui_time_sink_x_0_0_0, '0']
