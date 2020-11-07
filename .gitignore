@@ -6,7 +6,9 @@ top_block.py
 ber_simulation.py
 coding.py
 *.pyc
-recibido.*
+recibido*
+epy_block*
+
 pruebas/
 Obsoleta/
 
