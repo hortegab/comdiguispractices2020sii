@@ -151,7 +151,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [754, 935]
+    coordinate: [740, 944]
     rotation: 0
     state: enabled
 - name: E3TRadio_unipolar_to_bipolar_ff_0
@@ -167,7 +167,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [266, 160]
+    coordinate: [269, 105]
     rotation: 0
     state: enabled
 - name: Menu
@@ -196,7 +196,7 @@ blocks:
     label7: signal7
     label8: signal8
     label9: signal9
-    num_tabs: '5'
+    num_tabs: '1'
   states:
     bus_sink: false
     bus_source: false
@@ -220,7 +220,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [532, 301]
+    coordinate: [529, 174]
     rotation: 0
     state: enabled
 - name: analog_random_source_x_0
@@ -240,7 +240,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [22, 136]
+    coordinate: [25, 81]
     rotation: 0
     state: enabled
 - name: audio_source_0
@@ -259,7 +259,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [531, 384]
+    coordinate: [538, 263]
     rotation: 0
     state: enabled
 - name: blocks_int_to_float_0
@@ -276,7 +276,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [158, 160]
+    coordinate: [161, 105]
     rotation: 0
     state: enabled
 - name: blocks_null_sink_0
@@ -286,14 +286,14 @@ blocks:
     alias: ''
     bus_structure_sink: '[[0,],]'
     comment: ''
-    num_inputs: '5'
+    num_inputs: '3'
     type: float
     vlen: '1'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [921, 109]
+    coordinate: [948, 125]
     rotation: 0
     state: true
 - name: formas
@@ -333,25 +333,6 @@ blocks:
     coordinate: [744, 12]
     rotation: 0
     state: enabled
-- name: interp_fir_filter_xxx_0
-  id: interp_fir_filter_xxx
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    interp: Sps
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    samp_delay: '0'
-    taps: formas.sinc(Sps,ntaps)
-    type: fff
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [530, 166]
-    rotation: 0
-    state: enabled
 - name: interp_fir_filter_xxx_0_0
   id: interp_fir_filter_xxx
   parameters:
@@ -368,26 +349,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [536, 91]
-    rotation: 0
-    state: enabled
-- name: interp_fir_filter_xxx_0_1
-  id: interp_fir_filter_xxx
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    interp: Sps
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    samp_delay: '0'
-    taps: formas.saw(Sps)/Sps
-    type: fff
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [530, 238]
+    coordinate: [530, 98]
     rotation: 0
     state: enabled
 - name: qtgui_number_sink_0_0_0_0_0
@@ -419,7 +381,7 @@ blocks:
     factor8: '1'
     factor9: '1'
     graph_type: qtgui.NUM_GRAPH_HORIZ
-    gui_hint: Menu@3:0,0,1,1
+    gui_hint: Menu@0:0,0,1,1
     label1: The mean
     label10: ''
     label2: ''
@@ -450,7 +412,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [898, 919]
+    coordinate: [919, 928]
     rotation: 0
     state: enabled
 - name: qtgui_time_sink_x_0_0_0
@@ -484,7 +446,7 @@ blocks:
     ctrlpanel: 'False'
     entags: 'True'
     grid: 'False'
-    gui_hint: Menu@3:1,0,1,1
+    gui_hint: Menu@0:2,0,1,1
     label1: .
     label10: ''
     label2: Im
@@ -547,7 +509,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [896, 822]
+    coordinate: [597, 1149]
     rotation: 0
     state: enabled
 - name: virtual_sink_0
@@ -560,33 +522,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [929, 470]
-    rotation: 270
-    state: enabled
-- name: virtual_sink_0_0
-  id: virtual_sink
-  parameters:
-    alias: ''
-    comment: ''
-    stream_id: s1
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [863, 470]
-    rotation: 270
-    state: enabled
-- name: virtual_sink_0_0_0
-  id: virtual_sink
-  parameters:
-    alias: ''
-    comment: ''
-    stream_id: s2
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [804, 461]
+    coordinate: [819, 464]
     rotation: 270
     state: enabled
 - name: virtual_sink_0_0_0_0
@@ -631,21 +567,15 @@ blocks:
 
 connections:
 - [E3TRadio_mean_meter_0, '0', qtgui_number_sink_0_0_0_0_0, '0']
-- [E3TRadio_unipolar_to_bipolar_ff_0, '0', interp_fir_filter_xxx_0, '0']
 - [E3TRadio_unipolar_to_bipolar_ff_0, '0', interp_fir_filter_xxx_0_0, '0']
-- [E3TRadio_unipolar_to_bipolar_ff_0, '0', interp_fir_filter_xxx_0_1, '0']
-- [analog_noise_source_x_0, '0', blocks_null_sink_0, '3']
+- [analog_noise_source_x_0, '0', blocks_null_sink_0, '1']
 - [analog_noise_source_x_0, '0', virtual_sink_0_0_0_0, '0']
 - [analog_random_source_x_0, '0', blocks_int_to_float_0, '0']
-- [audio_source_0, '0', blocks_null_sink_0, '4']
+- [audio_source_0, '0', blocks_null_sink_0, '2']
 - [audio_source_0, '0', virtual_sink_0_0_0_0_0_0, '0']
 - [blocks_int_to_float_0, '0', E3TRadio_unipolar_to_bipolar_ff_0, '0']
-- [interp_fir_filter_xxx_0, '0', blocks_null_sink_0, '1']
-- [interp_fir_filter_xxx_0, '0', virtual_sink_0_0, '0']
 - [interp_fir_filter_xxx_0_0, '0', blocks_null_sink_0, '0']
 - [interp_fir_filter_xxx_0_0, '0', virtual_sink_0, '0']
-- [interp_fir_filter_xxx_0_1, '0', blocks_null_sink_0, '2']
-- [interp_fir_filter_xxx_0_1, '0', virtual_sink_0_0_0, '0']
 - [virtual_source_0_0_0_1, '0', E3TRadio_mean_meter_0, '0']
 - [virtual_source_0_0_0_1, '0', qtgui_time_sink_x_0_0_0, '0']
 
