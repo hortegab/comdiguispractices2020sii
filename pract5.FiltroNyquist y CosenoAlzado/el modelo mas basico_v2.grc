@@ -77,6 +77,18 @@ blocks:
     coordinate: [1182, 861]
     rotation: 0
     state: enabled
+- name: Nlob
+  id: variable
+  parameters:
+    comment: ''
+    value: '8'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [625, 76]
+    rotation: 0
+    state: enabled
 - name: No_dB
   id: variable_qtgui_range
   parameters:
@@ -236,6 +248,18 @@ blocks:
     coordinate: [641, 858]
     rotation: 0
     state: enabled
+- name: Rolloff
+  id: variable
+  parameters:
+    comment: ''
+    value: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [784, 77]
+    rotation: 0
+    state: enabled
 - name: Sps
   id: variable
   parameters:
@@ -252,14 +276,14 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: wform.rnyq(Sps,Sps*16)
+    value: wform.rrcos(Sps,ntaps, Rolloff)
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [534, 77]
+    coordinate: [453, 78]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: h
   id: variable
   parameters:
@@ -271,7 +295,7 @@ blocks:
     bus_structure: null
     coordinate: [531, 10]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: impulso
   id: variable
   parameters:
@@ -282,6 +306,18 @@ blocks:
     bus_source: false
     bus_structure: null
     coordinate: [806, 11]
+    rotation: 0
+    state: enabled
+- name: ntaps
+  id: variable
+  parameters:
+    comment: ''
+    value: Nlob*Sps
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [704, 77]
     rotation: 0
     state: enabled
 - name: run_stop
