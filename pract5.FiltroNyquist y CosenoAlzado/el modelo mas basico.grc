@@ -44,7 +44,7 @@ blocks:
     coordinate: [184, 12]
     rotation: 0
     state: enabled
-- name: BW
+- name: Channel_BW
   id: variable
   parameters:
     comment: ''
@@ -53,7 +53,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [965, 12]
+    coordinate: [1185, 19]
     rotation: 0
     state: enabled
 - name: Channel_BW
@@ -76,17 +76,17 @@ blocks:
     bus_structure: null
     coordinate: [1182, 861]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: Nlob
   id: variable
   parameters:
     comment: ''
-    value: '8'
+    value: '10'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [625, 76]
+    coordinate: [698, 11]
     rotation: 0
     state: enabled
 - name: No_dB
@@ -197,7 +197,7 @@ blocks:
     start: '0'
     step: '1'
     stop: Sps*10
-    value: '9'
+    value: '7'
     widget: counter_slider
   states:
     bus_sink: false
@@ -218,7 +218,7 @@ blocks:
     start: '0'
     step: '1'
     stop: Sps*2
-    value: int(Sps/2)
+    value: '6'
     widget: counter
   states:
     bus_sink: false
@@ -252,12 +252,12 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: '1'
+    value: '0'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [784, 77]
+    coordinate: [857, 12]
     rotation: 0
     state: enabled
 - name: Sps
@@ -281,21 +281,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [453, 78]
+    coordinate: [526, 13]
     rotation: 0
     state: enabled
-- name: h
-  id: variable
-  parameters:
-    comment: ''
-    value: wform.rect(Sps)
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [531, 10]
-    rotation: 0
-    state: disabled
 - name: impulso
   id: variable
   parameters:
@@ -305,7 +293,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [806, 11]
+    coordinate: [1026, 18]
     rotation: 0
     state: enabled
 - name: ntaps
@@ -317,7 +305,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [704, 77]
+    coordinate: [777, 12]
     rotation: 0
     state: enabled
 - name: run_stop
@@ -346,7 +334,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [711, 10]
+    coordinate: [931, 17]
     rotation: 0
     state: enabled
 - name: E3TRadio_bipolar_decisor_ff_0
@@ -378,7 +366,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [503, 488]
+    coordinate: [505, 491]
     rotation: 180
     state: enabled
 - name: b_Canal_AWGN_ff_0
@@ -604,7 +592,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [693, 184]
+    coordinate: [648, 185]
     rotation: 0
     state: enabled
 - name: menu
@@ -1214,7 +1202,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [199, 375]
+    coordinate: [201, 375]
     rotation: 90
     state: enabled
 - name: vs_0_2
