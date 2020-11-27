@@ -118,7 +118,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [835, 489]
+    coordinate: [846, 482]
     rotation: 0
     state: enabled
 - name: analog_const_source_x_0_0
@@ -151,7 +151,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [684, 497]
+    coordinate: [681, 493]
     rotation: 0
     state: enabled
 - name: blocks_float_to_complex_0
@@ -167,7 +167,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [199, 483]
+    coordinate: [136, 483]
     rotation: 0
     state: enabled
 - name: blocks_multiply_const_vxx_0_0
@@ -203,7 +203,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [342, 503]
+    coordinate: [338, 498]
     rotation: 0
     state: enabled
 - name: blocks_wavfile_source_0
@@ -221,7 +221,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [25, 160]
+    coordinate: [25, 158]
     rotation: 0
     state: true
 - name: fft_vxx_1
@@ -242,7 +242,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [483, 465]
+    coordinate: [473, 458]
     rotation: 0
     state: true
 - name: import_0

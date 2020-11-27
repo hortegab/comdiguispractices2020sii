@@ -53,7 +53,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [952, 13]
+    coordinate: [965, 12]
     rotation: 0
     state: enabled
 - name: Channel_BW
@@ -185,7 +185,7 @@ blocks:
     start: '0'
     step: '1'
     stop: Sps*10
-    value: Retardo_Timing+1
+    value: '9'
     widget: counter_slider
   states:
     bus_sink: false
@@ -240,7 +240,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: '4'
+    value: '8'
   states:
     bus_sink: false
     bus_source: false
@@ -252,12 +252,24 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: wform.nyq(Sps,Sps*16)
+    value: wform.rnyq(Sps,Sps*16)
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [529, 9]
+    coordinate: [534, 77]
+    rotation: 0
+    state: disabled
+- name: h
+  id: variable
+  parameters:
+    comment: ''
+    value: wform.rect(Sps)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [531, 10]
     rotation: 0
     state: enabled
 - name: impulso
@@ -269,7 +281,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [793, 12]
+    coordinate: [806, 11]
     rotation: 0
     state: enabled
 - name: run_stop
@@ -298,7 +310,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [698, 11]
+    coordinate: [711, 10]
     rotation: 0
     state: enabled
 - name: E3TRadio_bipolar_decisor_ff_0
@@ -349,7 +361,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [629, 281]
+    coordinate: [987, 278]
     rotation: 270
     state: enabled
 - name: b_EYE_Timing_f_0
@@ -503,6 +515,24 @@ blocks:
     coordinate: [779, 1043]
     rotation: 0
     state: enabled
+- name: blocks_multiply_const_vxx_0
+  id: blocks_multiply_const_vxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    const: 1/Sps
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [615, 495]
+    rotation: 180
+    state: true
 - name: blocks_null_sink_0
   id: blocks_null_sink
   parameters:
@@ -556,8 +586,27 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [293, 177]
+    coordinate: [693, 184]
     rotation: 0
+    state: enabled
+- name: interp_fir_filter_xxx_0_0
+  id: interp_fir_filter_xxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    interp: '1'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samp_delay: '0'
+    taps: h
+    type: fff
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [743, 487]
+    rotation: 180
     state: enabled
 - name: menu
   id: qtgui_tab_widget
@@ -578,7 +627,7 @@ blocks:
     label18: Tab 18
     label19: Tab 19
     label2: PSD
-    label3: T3 versus R3
+    label3: T3 versus R3a
     label4: T4 versus T3 in time
     label5: Tab 5
     label6: Tab 6
@@ -1127,7 +1176,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [552, 274]
+    coordinate: [910, 271]
     rotation: 270
     state: enabled
 - name: vs_0_0
@@ -1140,7 +1189,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [555, 373]
+    coordinate: [911, 370]
     rotation: 90
     state: enabled
 - name: vs_0_0_0
@@ -1169,6 +1218,19 @@ blocks:
     coordinate: [199, 375]
     rotation: 90
     state: enabled
+- name: vs_0_0_2
+  id: virtual_sink
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: R3a
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [557, 342]
+    rotation: 90
+    state: enabled
 - name: vs_0_2
   id: virtual_sink
   parameters:
@@ -1187,7 +1249,7 @@ blocks:
   parameters:
     alias: ''
     comment: ''
-    stream_id: R3
+    stream_id: R3a
   states:
     bus_sink: false
     bus_source: false
@@ -1226,7 +1288,7 @@ blocks:
   parameters:
     alias: ''
     comment: ''
-    stream_id: R3
+    stream_id: R3a
   states:
     bus_sink: false
     bus_source: false
@@ -1297,7 +1359,8 @@ blocks:
       \                \n    Amp=numpy.amax(h)\n    return h/Amp\n    \n#######################################################\n\
       ##            Forma Raiz de Coseno Alzado            ##\n#######################################################\
       \                       \n\ndef rrcos(Sps,ntaps,beta):\n    if beta==0:\n  \
-      \      h=nyq(Sps,ntaps)\n    else:\n        h=ntaps*[0,]\n        beta4=4.*beta\n\
+      \      h=nyq(Sps,ntaps) # Aqui hay un error, porque esta retornando Nyquist\
+      \ en es de su raiz\n    else:\n        h=ntaps*[0,]\n        beta4=4.*beta\n\
       \        for n in range(ntaps):\n            k=n-ntaps/2. # esto es para que\
       \ h[n] quede centrada en la mitad del vector\n            if k==0:\n       \
       \         h[n]=1+beta*(4./math.pi-1.)\n            elif abs(k)==Sps/beta4:\n\
@@ -1307,9 +1370,10 @@ blocks:
       \                Num=math.sin(kspi*(1-beta))+beta4*ks*math.cos(kspi*(1+beta))\n\
       \                Den=kspi*(1.-(beta4*ks)**2)\n                h[n]=Num/Den \
       \               \n    Amp=numpy.amax(h)\n    return h/Amp\n#######################################################\n\
-      ##            Forma Raiz de Coseno Alzado            ##\n#######################################################\
-      \                       \n\ndef rnyq(Sps,ntaps):\n    return rrcos(Sps,ntaps,0)\n\
-      \n"
+      ##            Forma Raiz de Nyquist                  ##\n#######################################################\
+      \                       \n# En la siguiente funcion hay un error ya que\n# rrcos()\
+      \ no esta calculando bien el caso en que beta==0\ndef rnyq(Sps,ntaps):\n   \
+      \ return rrcos(Sps,ntaps,0) \n\n"
   states:
     bus_sink: false
     bus_source: false
@@ -1323,17 +1387,20 @@ connections:
 - [E3TRadio_bipolar_decisor_ff_0, '0', vs_0_0_1, '0']
 - [E3TRadio_diezma_ff_0, '0', E3TRadio_bipolar_decisor_ff_0, '0']
 - [E3TRadio_diezma_ff_0, '0', vs_0_0_0, '0']
-- [b_Canal_AWGN_ff_0, '0', E3TRadio_diezma_ff_0, '0']
+- [b_Canal_AWGN_ff_0, '0', interp_fir_filter_xxx_0_0, '0']
 - [b_Canal_AWGN_ff_0, '0', vs_0_0, '0']
 - [b_binary_bipolar_source1_f_0, '0', interp_fir_filter_xxx_0, '0']
 - [b_binary_bipolar_source1_f_0, '0', vs_0_2, '0']
 - [blocks_delay_0, '0', qtgui_time_sink_x_0, '0']
 - [blocks_delay_0_1, '0', qtgui_time_sink_x_0_1_0, '0']
 - [blocks_delay_0_1_0, '0', qtgui_time_sink_x_0_1, '0']
+- [blocks_multiply_const_vxx_0, '0', E3TRadio_diezma_ff_0, '0']
+- [blocks_multiply_const_vxx_0, '0', vs_0_0_2, '0']
 - [blocks_vector_source_x_0, '0', interp_fir_filter_xxx_0, '0']
 - [blocks_vector_source_x_0, '0', vs_0_2, '0']
 - [interp_fir_filter_xxx_0, '0', b_Canal_AWGN_ff_0, '0']
 - [interp_fir_filter_xxx_0, '0', vs_0, '0']
+- [interp_fir_filter_xxx_0_0, '0', blocks_multiply_const_vxx_0, '0']
 - [vso_0_1_0_0, '0', b_EYE_Timing_f_0, '0']
 - [vso_0_1_0_0, '0', b_PSD_f_0, '0']
 - [vso_0_1_0_0, '0', b_eye_diagram_f_0, '0']
