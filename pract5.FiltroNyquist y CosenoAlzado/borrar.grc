@@ -81,7 +81,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: '10'
+    value: '8'
   states:
     bus_sink: false
     bus_source: false
@@ -252,7 +252,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: '0'
+    value: '0.3'
   states:
     bus_sink: false
     bus_source: false
@@ -276,7 +276,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: wform.rcos(Sps,ntaps, Rolloff)
+    value: wform.rrcos(Sps,ntaps, Rolloff)
   states:
     bus_sink: false
     bus_source: false
@@ -288,7 +288,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: (0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+    value: (0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,4,-2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
   states:
     bus_sink: false
     bus_source: false
@@ -465,7 +465,7 @@ blocks:
     bus_structure: null
     coordinate: [8, 184]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: b_eye_diagram_f_0
   id: b_eye_diagram_f
   parameters:
@@ -539,6 +539,24 @@ blocks:
     coordinate: [779, 1043]
     rotation: 0
     state: enabled
+- name: blocks_multiply_const_vxx_0
+  id: blocks_multiply_const_vxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    const: 1/Sps
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [601, 498]
+    rotation: 180
+    state: true
 - name: blocks_null_sink_0
   id: blocks_null_sink
   parameters:
@@ -575,7 +593,7 @@ blocks:
     bus_structure: null
     coordinate: [16, 92]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: interp_fir_filter_xxx_0
   id: interp_fir_filter_xxx
   parameters:
@@ -592,8 +610,27 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [648, 185]
+    coordinate: [628, 182]
     rotation: 0
+    state: enabled
+- name: interp_fir_filter_xxx_0_0
+  id: interp_fir_filter_xxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    interp: '1'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samp_delay: '0'
+    taps: h
+    type: fff
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [769, 489]
+    rotation: 180
     state: enabled
 - name: menu
   id: qtgui_tab_widget
@@ -1205,6 +1242,19 @@ blocks:
     coordinate: [201, 375]
     rotation: 90
     state: enabled
+- name: vs_0_0_2
+  id: virtual_sink
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: R3a
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [555, 354]
+    rotation: 90
+    state: enabled
 - name: vs_0_2
   id: virtual_sink
   parameters:
@@ -1223,7 +1273,7 @@ blocks:
   parameters:
     alias: ''
     comment: ''
-    stream_id: R3
+    stream_id: R3a
   states:
     bus_sink: false
     bus_source: false
@@ -1262,7 +1312,7 @@ blocks:
   parameters:
     alias: ''
     comment: ''
-    stream_id: R3
+    stream_id: R3a
   states:
     bus_sink: false
     bus_source: false
@@ -1361,17 +1411,20 @@ connections:
 - [E3TRadio_bipolar_decisor_ff_0, '0', vs_0_0_1, '0']
 - [E3TRadio_diezma_ff_0, '0', E3TRadio_bipolar_decisor_ff_0, '0']
 - [E3TRadio_diezma_ff_0, '0', vs_0_0_0, '0']
-- [b_Canal_AWGN_ff_0, '0', E3TRadio_diezma_ff_0, '0']
+- [b_Canal_AWGN_ff_0, '0', interp_fir_filter_xxx_0_0, '0']
 - [b_Canal_AWGN_ff_0, '0', vs_0_0, '0']
 - [b_binary_bipolar_source1_f_0, '0', interp_fir_filter_xxx_0, '0']
 - [b_binary_bipolar_source1_f_0, '0', vs_0_2, '0']
 - [blocks_delay_0, '0', qtgui_time_sink_x_0, '0']
 - [blocks_delay_0_1, '0', qtgui_time_sink_x_0_1_0, '0']
 - [blocks_delay_0_1_0, '0', qtgui_time_sink_x_0_1, '0']
+- [blocks_multiply_const_vxx_0, '0', E3TRadio_diezma_ff_0, '0']
+- [blocks_multiply_const_vxx_0, '0', vs_0_0_2, '0']
 - [blocks_vector_source_x_0, '0', interp_fir_filter_xxx_0, '0']
 - [blocks_vector_source_x_0, '0', vs_0_2, '0']
 - [interp_fir_filter_xxx_0, '0', b_Canal_AWGN_ff_0, '0']
 - [interp_fir_filter_xxx_0, '0', vs_0, '0']
+- [interp_fir_filter_xxx_0_0, '0', blocks_multiply_const_vxx_0, '0']
 - [vso_0_1_0_0, '0', b_EYE_Timing_f_0, '0']
 - [vso_0_1_0_0, '0', b_PSD_f_0, '0']
 - [vso_0_1_0_0, '0', b_eye_diagram_f_0, '0']

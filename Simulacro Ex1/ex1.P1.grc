@@ -53,7 +53,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1185, 19]
+    coordinate: [845, 112]
     rotation: 0
     state: enabled
 - name: Channel_BW
@@ -81,12 +81,12 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: '10'
+    value: '8'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [698, 11]
+    coordinate: [147, 107]
     rotation: 0
     state: enabled
 - name: No_dB
@@ -114,12 +114,12 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: '12000'
+    value: 1/Tb
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [256, 12]
+    coordinate: [307, 111]
     rotation: 0
     state: enabled
 - name: Retardo_T3
@@ -264,24 +264,60 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: '8'
+    value: '4'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [341, 12]
+    coordinate: [411, 110]
+    rotation: 0
+    state: enabled
+- name: Tb
+  id: variable
+  parameters:
+    comment: ''
+    value: Tf/Nlob
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [224, 110]
+    rotation: 0
+    state: enabled
+- name: Tf
+  id: variable
+  parameters:
+    comment: ''
+    value: '0.00000024'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [54, 109]
+    rotation: 0
+    state: enabled
+- name: g
+  id: variable
+  parameters:
+    comment: ''
+    value: (1,-1,-1,1,0,0,0,0)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [248, 177]
     rotation: 0
     state: enabled
 - name: h
   id: variable
   parameters:
     comment: ''
-    value: wform.rcos(Sps,ntaps, Rolloff)
+    value: wform.nyq(Sps,ntaps)
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [526, 13]
+    coordinate: [562, 112]
     rotation: 0
     state: enabled
 - name: impulso
@@ -305,7 +341,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [777, 12]
+    coordinate: [489, 113]
     rotation: 0
     state: enabled
 - name: run_stop
@@ -334,7 +370,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [931, 17]
+    coordinate: [729, 118]
     rotation: 0
     state: enabled
 - name: E3TRadio_bipolar_decisor_ff_0
@@ -349,7 +385,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [296, 503]
+    coordinate: [377, 552]
     rotation: 180
     state: true
 - name: E3TRadio_diezma_ff_0
@@ -366,7 +402,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [505, 491]
+    coordinate: [586, 540]
     rotation: 180
     state: enabled
 - name: b_Canal_AWGN_ff_0
@@ -385,7 +421,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [987, 278]
+    coordinate: [732, 322]
     rotation: 270
     state: enabled
 - name: b_EYE_Timing_f_0
@@ -450,22 +486,25 @@ blocks:
     coordinate: [1078, 1465]
     rotation: 0
     state: true
-- name: b_binary_bipolar_source1_f_0
-  id: b_binary_bipolar_source1_f
+- name: b_PSD_f_0_1
+  id: b_PSD_f
   parameters:
-    Am: '1.'
+    Ensayos: '1000000'
+    N: '1024'
+    Titulo: '''PSD in R4'''
+    Ymax: 2e-5
     affinity: ''
     alias: ''
     comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
+    gui_hint: menu@1:0,0,1,1
+    samp_rate: Rb
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [8, 184]
+    coordinate: [1076, 1703]
     rotation: 0
-    state: disabled
+    state: true
 - name: b_eye_diagram_f_0
   id: b_eye_diagram_f
   parameters:
@@ -553,7 +592,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [18, 502]
+    coordinate: [30, 550]
     rotation: 180
     state: enabled
 - name: blocks_vector_source_x_0
@@ -567,13 +606,13 @@ blocks:
     repeat: 'False'
     tags: '[]'
     type: float
-    vector: impulso
+    vector: g
     vlen: '1'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [16, 92]
+    coordinate: [45, 214]
     rotation: 0
     state: enabled
 - name: interp_fir_filter_xxx_0
@@ -592,7 +631,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [648, 185]
+    coordinate: [394, 225]
     rotation: 0
     state: enabled
 - name: menu
@@ -602,7 +641,7 @@ blocks:
     comment: ''
     gui_hint: 2,0,1,3
     label0: Eye Diagramm
-    label1: T4 versus R4 in time
+    label1: P3.PSD en R4
     label10: Tab 10
     label11: Tab 11
     label12: Tab 12
@@ -613,9 +652,9 @@ blocks:
     label17: Tab 17
     label18: Tab 18
     label19: Tab 19
-    label2: PSD
+    label2: P4. PSD
     label3: T3 versus R3a
-    label4: T4 versus T3 in time
+    label4: P2
     label5: Tab 5
     label6: Tab 6
     label7: Tab 7
@@ -627,45 +666,6 @@ blocks:
     bus_source: false
     bus_structure: null
     coordinate: [152, 860]
-    rotation: 0
-    state: enabled
-- name: note_0
-  id: note
-  parameters:
-    alias: ''
-    comment: ''
-    note: SOURCE LAYER
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [37, 569]
-    rotation: 0
-    state: enabled
-- name: note_0_0
-  id: note
-  parameters:
-    alias: ''
-    comment: ''
-    note: PRE-CHANNEL LAYER
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [352, 564]
-    rotation: 0
-    state: enabled
-- name: note_0_0_0
-  id: note
-  parameters:
-    alias: ''
-    comment: ''
-    note: CHANNEL LAYER
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [712, 564]
     rotation: 0
     state: enabled
 - name: qtgui_time_sink_x_0
@@ -820,7 +820,7 @@ blocks:
     marker9: '-1'
     name: '""'
     nconnections: '1'
-    size: 10*Sps
+    size: 4*Sps
     srate: samp_rate
     stemplot: 'False'
     style1: '1'
@@ -1014,7 +1014,7 @@ blocks:
     marker9: '-1'
     name: '""'
     nconnections: '1'
-    size: len(impulso)
+    size: len(g)
     srate: Rb
     stemplot: 'True'
     style1: '1'
@@ -1099,7 +1099,7 @@ blocks:
     label8: ''
     label9: ''
     legend: 'True'
-    marker1: '-1'
+    marker1: '0'
     marker10: '-1'
     marker2: '0'
     marker3: '-1'
@@ -1111,10 +1111,10 @@ blocks:
     marker9: '-1'
     name: '""'
     nconnections: '1'
-    size: len(impulso)*Sps
+    size: len(g)*Sps
     srate: samp_rate
     stemplot: 'False'
-    style1: '3'
+    style1: '1'
     style10: '1'
     style2: '1'
     style3: '1'
@@ -1163,7 +1163,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [910, 271]
+    coordinate: [655, 315]
     rotation: 270
     state: enabled
 - name: vs_0_0
@@ -1176,7 +1176,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [911, 370]
+    coordinate: [656, 414]
     rotation: 90
     state: enabled
 - name: vs_0_0_0
@@ -1189,7 +1189,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [444, 369]
+    coordinate: [525, 418]
     rotation: 90
     state: enabled
 - name: vs_0_0_1
@@ -1202,7 +1202,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [201, 375]
+    coordinate: [282, 424]
     rotation: 90
     state: enabled
 - name: vs_0_2
@@ -1215,7 +1215,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [202, 261]
+    coordinate: [283, 310]
     rotation: 270
     state: enabled
 - name: vso_0_1_0_0
@@ -1363,8 +1363,6 @@ connections:
 - [E3TRadio_diezma_ff_0, '0', vs_0_0_0, '0']
 - [b_Canal_AWGN_ff_0, '0', E3TRadio_diezma_ff_0, '0']
 - [b_Canal_AWGN_ff_0, '0', vs_0_0, '0']
-- [b_binary_bipolar_source1_f_0, '0', interp_fir_filter_xxx_0, '0']
-- [b_binary_bipolar_source1_f_0, '0', vs_0_2, '0']
 - [blocks_delay_0, '0', qtgui_time_sink_x_0, '0']
 - [blocks_delay_0_1, '0', qtgui_time_sink_x_0_1_0, '0']
 - [blocks_delay_0_1_0, '0', qtgui_time_sink_x_0_1, '0']
@@ -1376,6 +1374,7 @@ connections:
 - [vso_0_1_0_0, '0', b_PSD_f_0, '0']
 - [vso_0_1_0_0, '0', b_eye_diagram_f_0, '0']
 - [vso_0_1_0_0_0, '0', blocks_delay_0, '0']
+- [vso_0_1_0_0_0_0, '0', b_PSD_f_0_1, '0']
 - [vso_0_1_0_0_0_0, '0', qtgui_time_sink_x_0, '1']
 - [vso_0_1_0_0_0_0_0, '0', qtgui_time_sink_x_0_0_0, '0']
 - [vso_0_1_0_0_0_1, '0', qtgui_time_sink_x_0_0, '0']
