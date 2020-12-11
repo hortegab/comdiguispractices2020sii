@@ -509,7 +509,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [797, 1780]
+    coordinate: [830, 1780]
     rotation: 0
     state: true
 - name: b_binary_bipolar_source1_f_0
@@ -1128,7 +1128,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [614, 1824]
+    coordinate: [619, 1811]
     rotation: 0
     state: enabled
 - name: vso_0_1_0_0_0_0_0

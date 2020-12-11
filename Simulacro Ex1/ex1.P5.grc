@@ -469,7 +469,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [732, 322]
+    coordinate: [801, 302]
     rotation: 270
     state: enabled
 - name: b_EYE_Timing_f_0
@@ -564,7 +564,7 @@ blocks:
     alias: ''
     comment: ''
     gui_hint: menu@1:1,0,1,1
-    samp_rate: Rb
+    samp_rate: samp_rate
   states:
     bus_sink: false
     bus_source: false
@@ -657,7 +657,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [574, 233]
+    coordinate: [590, 236]
     rotation: 0
     state: true
 - name: blocks_null_sink_0
@@ -716,7 +716,7 @@ blocks:
     comment: ''
     gui_hint: 2,0,1,3
     label0: Eye Diagramm
-    label1: P3. PSD en R4
+    label1: P3. PSD del ruido del canal
     label10: Tab 10
     label11: Tab 11
     label12: Tab 12
@@ -1141,7 +1141,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [655, 315]
+    coordinate: [695, 315]
     rotation: 270
     state: enabled
 - name: vs_0_0
@@ -1154,7 +1154,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [656, 414]
+    coordinate: [696, 414]
     rotation: 90
     state: enabled
 - name: vs_0_0_0
@@ -1214,12 +1214,12 @@ blocks:
   parameters:
     alias: ''
     comment: ''
-    stream_id: R4
+    stream_id: R3
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [614, 1824]
+    coordinate: [630, 1813]
     rotation: 0
     state: enabled
 - name: vso_0_1_0_0_0_0_0

@@ -68,7 +68,7 @@ blocks:
     start: '0.'
     step: (samp_rate/2)/100.
     stop: samp_rate/2.
-    value: BW
+    value: samp_rate/2.
     widget: counter_slider
   states:
     bus_sink: false
@@ -586,7 +586,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [693, 184]
+    coordinate: [715, 181]
     rotation: 0
     state: enabled
 - name: interp_fir_filter_xxx_0_0
@@ -1335,6 +1335,19 @@ blocks:
     coordinate: [619, 1107]
     rotation: 0
     state: enabled
+- name: vso_0_1_0_0_1
+  id: virtual_source
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: R3
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [677, 1385]
+    rotation: 0
+    state: enabled
 - name: wform
   id: epy_module
   parameters:
@@ -1403,7 +1416,6 @@ connections:
 - [interp_fir_filter_xxx_0_0, '0', blocks_multiply_const_vxx_0, '0']
 - [vso_0_1_0_0, '0', b_EYE_Timing_f_0, '0']
 - [vso_0_1_0_0, '0', b_PSD_f_0, '0']
-- [vso_0_1_0_0, '0', b_eye_diagram_f_0, '0']
 - [vso_0_1_0_0_0, '0', blocks_delay_0, '0']
 - [vso_0_1_0_0_0_0, '0', qtgui_time_sink_x_0, '1']
 - [vso_0_1_0_0_0_0_0, '0', qtgui_time_sink_x_0_0_0, '0']
@@ -1411,6 +1423,7 @@ connections:
 - [vso_0_1_0_0_0_2, '0', blocks_delay_0_1_0, '0']
 - [vso_0_1_0_0_0_2_0, '0', b_PSD_f_0_0, '0']
 - [vso_0_1_0_0_0_2_0, '0', blocks_delay_0_1, '0']
+- [vso_0_1_0_0_1, '0', b_eye_diagram_f_0, '0']
 
 metadata:
   file_format: 1
