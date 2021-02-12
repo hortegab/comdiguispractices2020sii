@@ -38,6 +38,8 @@ import signal
 from argparse import ArgumentParser
 from gnuradio.eng_arg import eng_float, intx
 from gnuradio import eng_notation
+import E3TRadio
+import math
 import numpy as np
 
 
@@ -80,7 +82,7 @@ class FSK(gr.top_block, Qt.QWidget):
         ##################################################
         # Variables
         ##################################################
-        self.Sps = Sps = 32
+        self.Sps = Sps = 256
         self.Rb = Rb = 32000
         self.samp_rate = samp_rate = Rb*Sps
         self.h = h = np.array([1]*Sps)
@@ -89,66 +91,15 @@ class FSK(gr.top_block, Qt.QWidget):
         ##################################################
         # Blocks
         ##################################################
-        self.qtgui_time_sink_x_0_0_0_0 = qtgui.time_sink_c(
-            16*Sps, #size
-            samp_rate, #samp_rate
-            "", #name
-            1, #number of inputs
-            None # parent
-        )
-        self.qtgui_time_sink_x_0_0_0_0.set_update_time(0.10)
-        self.qtgui_time_sink_x_0_0_0_0.set_y_axis(-1.5, 1.5)
-
-        self.qtgui_time_sink_x_0_0_0_0.set_y_label('Amplitude', "")
-
-        self.qtgui_time_sink_x_0_0_0_0.enable_tags(True)
-        self.qtgui_time_sink_x_0_0_0_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, qtgui.TRIG_SLOPE_POS, 0.0, 0, 0, "")
-        self.qtgui_time_sink_x_0_0_0_0.enable_autoscale(False)
-        self.qtgui_time_sink_x_0_0_0_0.enable_grid(False)
-        self.qtgui_time_sink_x_0_0_0_0.enable_axis_labels(True)
-        self.qtgui_time_sink_x_0_0_0_0.enable_control_panel(False)
-        self.qtgui_time_sink_x_0_0_0_0.enable_stem_plot(False)
-
-
-        labels = ['P4', 'P3', 'Signal 3', 'Signal 4', 'Signal 5',
-            'Signal 6', 'Signal 7', 'Signal 8', 'Signal 9', 'Signal 10']
-        widths = [1, 1, 1, 1, 1,
-            1, 1, 1, 1, 1]
-        colors = ['blue', 'red', 'green', 'black', 'cyan',
-            'magenta', 'yellow', 'dark red', 'dark green', 'dark blue']
-        alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
-            1.0, 1.0, 1.0, 1.0, 1.0]
-        styles = [1, 1, 1, 1, 1,
-            1, 1, 1, 1, 1]
-        markers = [-1, -1, -1, -1, -1,
-            -1, -1, -1, -1, -1]
-
-
-        for i in range(2):
-            if len(labels[i]) == 0:
-                if (i % 2 == 0):
-                    self.qtgui_time_sink_x_0_0_0_0.set_line_label(i, "Re{{Data {0}}}".format(i/2))
-                else:
-                    self.qtgui_time_sink_x_0_0_0_0.set_line_label(i, "Im{{Data {0}}}".format(i/2))
-            else:
-                self.qtgui_time_sink_x_0_0_0_0.set_line_label(i, labels[i])
-            self.qtgui_time_sink_x_0_0_0_0.set_line_width(i, widths[i])
-            self.qtgui_time_sink_x_0_0_0_0.set_line_color(i, colors[i])
-            self.qtgui_time_sink_x_0_0_0_0.set_line_style(i, styles[i])
-            self.qtgui_time_sink_x_0_0_0_0.set_line_marker(i, markers[i])
-            self.qtgui_time_sink_x_0_0_0_0.set_line_alpha(i, alphas[i])
-
-        self._qtgui_time_sink_x_0_0_0_0_win = sip.wrapinstance(self.qtgui_time_sink_x_0_0_0_0.pyqwidget(), Qt.QWidget)
-        self.top_grid_layout.addWidget(self._qtgui_time_sink_x_0_0_0_0_win)
         self.qtgui_time_sink_x_0_0_0 = qtgui.time_sink_f(
-            16*Sps, #size
+            8*Sps, #size
             samp_rate, #samp_rate
             "", #name
             1, #number of inputs
             None # parent
         )
         self.qtgui_time_sink_x_0_0_0.set_update_time(0.10)
-        self.qtgui_time_sink_x_0_0_0.set_y_axis(-DF, DF)
+        self.qtgui_time_sink_x_0_0_0.set_y_axis(-math.pi*2*DF/Rb, math.pi*2*DF/Rb)
 
         self.qtgui_time_sink_x_0_0_0.set_y_label('Amplitude', "")
 
@@ -189,7 +140,7 @@ class FSK(gr.top_block, Qt.QWidget):
         self._qtgui_time_sink_x_0_0_0_win = sip.wrapinstance(self.qtgui_time_sink_x_0_0_0.pyqwidget(), Qt.QWidget)
         self.top_grid_layout.addWidget(self._qtgui_time_sink_x_0_0_0_win)
         self.qtgui_time_sink_x_0_0 = qtgui.time_sink_f(
-            16*Sps, #size
+            8*Sps, #size
             samp_rate, #samp_rate
             "", #name
             1, #number of inputs
@@ -237,7 +188,7 @@ class FSK(gr.top_block, Qt.QWidget):
         self._qtgui_time_sink_x_0_0_win = sip.wrapinstance(self.qtgui_time_sink_x_0_0.pyqwidget(), Qt.QWidget)
         self.top_grid_layout.addWidget(self._qtgui_time_sink_x_0_0_win)
         self.qtgui_time_sink_x_0 = qtgui.time_sink_f(
-            16, #size
+            8, #size
             Rb, #samp_rate
             "", #name
             1, #number of inputs
@@ -286,27 +237,26 @@ class FSK(gr.top_block, Qt.QWidget):
         self.top_grid_layout.addWidget(self._qtgui_time_sink_x_0_win)
         self.interp_fir_filter_xxx_0 = filter.interp_fir_filter_fff(Sps, h)
         self.interp_fir_filter_xxx_0.declare_sample_delay(0)
-        self.blocks_vco_c_0 = blocks.vco_c(samp_rate, 4, 1)
-        self.blocks_null_sink_0 = blocks.null_sink(gr.sizeof_gr_complex*1)
-        self.blocks_multiply_const_vxx_0_0 = blocks.multiply_const_ff(DF)
+        self.blocks_multiply_const_vxx_0_0_0 = blocks.multiply_const_ff(2*math.pi*DF)
+        self.blocks_multiply_const_vxx_0_0 = blocks.multiply_const_ff(1/samp_rate)
         self.blocks_char_to_float_0 = blocks.char_to_float(1, 1)
         self.b_unipolar2bipolar_ff_0 = b_unipolar2bipolar_ff()
         self.analog_random_source_x_0 = blocks.vector_source_b(list(map(int, numpy.random.randint(0, 2, 1000))), True)
+        self.E3TRadio_acumulador_truncado_ff_0 = E3TRadio.acumulador_truncado_ff(Sps,0)
 
 
 
         ##################################################
         # Connections
         ##################################################
+        self.connect((self.E3TRadio_acumulador_truncado_ff_0, 0), (self.blocks_multiply_const_vxx_0_0, 0))
         self.connect((self.analog_random_source_x_0, 0), (self.blocks_char_to_float_0, 0))
         self.connect((self.b_unipolar2bipolar_ff_0, 0), (self.interp_fir_filter_xxx_0, 0))
         self.connect((self.b_unipolar2bipolar_ff_0, 0), (self.qtgui_time_sink_x_0, 0))
         self.connect((self.blocks_char_to_float_0, 0), (self.b_unipolar2bipolar_ff_0, 0))
-        self.connect((self.blocks_multiply_const_vxx_0_0, 0), (self.blocks_vco_c_0, 0))
-        self.connect((self.blocks_multiply_const_vxx_0_0, 0), (self.qtgui_time_sink_x_0_0_0, 0))
-        self.connect((self.blocks_vco_c_0, 0), (self.blocks_null_sink_0, 0))
-        self.connect((self.blocks_vco_c_0, 0), (self.qtgui_time_sink_x_0_0_0_0, 0))
-        self.connect((self.interp_fir_filter_xxx_0, 0), (self.blocks_multiply_const_vxx_0_0, 0))
+        self.connect((self.blocks_multiply_const_vxx_0_0, 0), (self.blocks_multiply_const_vxx_0_0_0, 0))
+        self.connect((self.blocks_multiply_const_vxx_0_0_0, 0), (self.qtgui_time_sink_x_0_0_0, 0))
+        self.connect((self.interp_fir_filter_xxx_0, 0), (self.E3TRadio_acumulador_truncado_ff_0, 0))
         self.connect((self.interp_fir_filter_xxx_0, 0), (self.qtgui_time_sink_x_0_0, 0))
 
 
@@ -334,15 +284,16 @@ class FSK(gr.top_block, Qt.QWidget):
         self.set_DF(4*self.Rb)
         self.set_samp_rate(self.Rb*self.Sps)
         self.qtgui_time_sink_x_0.set_samp_rate(self.Rb)
+        self.qtgui_time_sink_x_0_0_0.set_y_axis(-math.pi*2*self.DF/self.Rb, math.pi*2*self.DF/self.Rb)
 
     def get_samp_rate(self):
         return self.samp_rate
 
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
+        self.blocks_multiply_const_vxx_0_0.set_k(1/self.samp_rate)
         self.qtgui_time_sink_x_0_0.set_samp_rate(self.samp_rate)
         self.qtgui_time_sink_x_0_0_0.set_samp_rate(self.samp_rate)
-        self.qtgui_time_sink_x_0_0_0_0.set_samp_rate(self.samp_rate)
 
     def get_h(self):
         return self.h
@@ -356,8 +307,8 @@ class FSK(gr.top_block, Qt.QWidget):
 
     def set_DF(self, DF):
         self.DF = DF
-        self.blocks_multiply_const_vxx_0_0.set_k(self.DF)
-        self.qtgui_time_sink_x_0_0_0.set_y_axis(-self.DF, self.DF)
+        self.blocks_multiply_const_vxx_0_0_0.set_k(2*math.pi*self.DF)
+        self.qtgui_time_sink_x_0_0_0.set_y_axis(-math.pi*2*self.DF/self.Rb, math.pi*2*self.DF/self.Rb)
 
 
 
