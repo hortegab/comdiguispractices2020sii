@@ -106,7 +106,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [731, 126]
+    coordinate: [731, 119]
     rotation: 0
     state: true
 - name: analog_random_source_x_0
@@ -126,7 +126,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [33, 99]
+    coordinate: [72, 103]
     rotation: 0
     state: true
 - name: b_unipolar2bipolar_ff_0
@@ -141,7 +141,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [358, 136]
+    coordinate: [344, 130]
     rotation: 0
     state: true
 - name: blocks_char_to_float_0
@@ -176,7 +176,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [798, 137]
+    coordinate: [797, 126]
     rotation: 0
     state: enabled
 - name: blocks_multiply_const_vxx_0_0_0
@@ -194,7 +194,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [940, 136]
+    coordinate: [937, 126]
     rotation: 0
     state: enabled
 - name: import_0
@@ -239,7 +239,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [539, 126]
+    coordinate: [531, 120]
     rotation: 0
     state: true
 - name: qtgui_time_sink_x_0
@@ -543,7 +543,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [514, 218]
+    coordinate: [480, 218]
     rotation: 270
     state: true
 - name: virtual_sink_0_0
