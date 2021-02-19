@@ -1,0 +1,677 @@
+options:
+  parameters:
+    author: Homero Ortega Boada
+    category: Custom
+    cmake_opt: ''
+    comment: ''
+    copyright: ''
+    description: Dale un valor a Es/No, corre el flujograma y obten la SER. Puedes
+      sacar tantos valores como para construir una curva de SER
+    gen_cmake: 'On'
+    gen_linking: dynamic
+    generate_options: qt_gui
+    hier_block_src_path: '.:'
+    id: ser_simulation
+    max_nouts: '0'
+    output_language: python
+    placement: (0,0)
+    qt_qss_theme: ''
+    realtime_scheduling: ''
+    run: run_stop
+    run_command: '{python} -u {filename}'
+    run_options: prompt
+    sizing_mode: fixed
+    thread_safe_setters: ''
+    title: SER Simulation
+    window_size: 2048,2048
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 0]
+    rotation: 0
+    state: enabled
+
+blocks:
+- name: Constelacion1
+  id: variable
+  parameters:
+    comment: ''
+    value: digital.constellation_qpsk().points()
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1031, 9]
+    rotation: 0
+    state: disabled
+- name: Constelacion1
+  id: variable
+  parameters:
+    comment: ''
+    value: digital.constellation_8psk().points()
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1210, 8]
+    rotation: 0
+    state: enabled
+- name: Constelacion2
+  id: variable
+  parameters:
+    comment: ''
+    value: '[(raiz2 + raiz2*1j),  (-raiz2 + raiz2*1j), (-raiz2 - raiz2*1j), (raiz2
+      - raiz2*1j)]'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1040, 151]
+    rotation: 0
+    state: disabled
+- name: Constelacion2
+  id: variable
+  parameters:
+    comment: ''
+    value: '[(1+0j), (raiz2 + raiz2*1j), (0+1j), (-raiz2 + raiz2*1j), (-1+0j), (-raiz2
+      - raiz2*1j), (0.-1j), (raiz2 - raiz2*1j)]'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1236, 152]
+    rotation: 0
+    state: enabled
+- name: Constelacion4
+  id: variable
+  parameters:
+    comment: ''
+    value: digital.constellation_bpsk().points()
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1035, 232]
+    rotation: 0
+    state: enabled
+- name: EsN0max
+  id: variable
+  parameters:
+    comment: ''
+    value: '30.'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [624, 4]
+    rotation: 0
+    state: enabled
+- name: EsN0min
+  id: variable
+  parameters:
+    comment: ''
+    value: '-10.'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [536, 4]
+    rotation: 0
+    state: enabled
+- name: N_snr
+  id: variable
+  parameters:
+    comment: ''
+    value: '128'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [712, 4]
+    rotation: 0
+    state: enabled
+- name: Rs
+  id: variable
+  parameters:
+    comment: ''
+    value: samp_rate/Sps
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [280, 4]
+    rotation: 0
+    state: enabled
+- name: Sps
+  id: variable
+  parameters:
+    comment: ''
+    value: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [368, 4]
+    rotation: 0
+    state: enabled
+- name: mapdirect1
+  id: variable
+  parameters:
+    comment: ''
+    value: coding.direct_map(Constelacion1)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1204, 71]
+    rotation: 0
+    state: enabled
+- name: mapdirect2
+  id: variable
+  parameters:
+    comment: ''
+    value: coding.direct_map(Constelacion2)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1209, 222]
+    rotation: 0
+    state: enabled
+- name: mapinverse1
+  id: variable
+  parameters:
+    comment: ''
+    value: coding.inverse_map(Constelacion1)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1356, 71]
+    rotation: 0
+    state: enabled
+- name: mapinverse2
+  id: variable
+  parameters:
+    comment: ''
+    value: coding.inverse_map(Constelacion2)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1361, 222]
+    rotation: 0
+    state: enabled
+- name: raiz2
+  id: variable
+  parameters:
+    comment: ''
+    value: 2**(1/2)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [934, 152]
+    rotation: 0
+    state: enabled
+- name: run_stop
+  id: variable_qtgui_check_box
+  parameters:
+    comment: ''
+    'false': 'False'
+    gui_hint: 0,0,1,1
+    label: Inicial/Parar
+    'true': 'True'
+    type: int
+    value: 'True'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [804, 5]
+    rotation: 180
+    state: enabled
+- name: samp_rate
+  id: variable
+  parameters:
+    comment: ''
+    value: 100e3
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [184, 5]
+    rotation: 0
+    state: enabled
+- name: analog_random_source_x_0_0
+  id: analog_random_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    max: len(Constelacion2)
+    maxoutbuf: '0'
+    min: '0'
+    minoutbuf: '0'
+    num_samps: '10000000'
+    repeat: 'True'
+    type: byte
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [56, 212]
+    rotation: 0
+    state: enabled
+- name: analog_random_source_x_1
+  id: analog_random_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    max: len(Constelacion1)
+    maxoutbuf: '0'
+    min: '0'
+    minoutbuf: '0'
+    num_samps: '10000000'
+    repeat: 'True'
+    type: byte
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [56, 124]
+    rotation: 0
+    state: enabled
+- name: b_BERTool_0_0_0
+  id: b_BERTool
+  parameters:
+    EsN0max: EsN0max
+    EsN0min: EsN0min
+    N_snr: N_snr
+    Rs: Rs
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [912, 660]
+    rotation: 270
+    state: enabled
+- name: b_BERTool_0_1
+  id: b_BERTool
+  parameters:
+    EsN0max: EsN0max
+    EsN0min: EsN0min
+    N_snr: N_snr
+    Rs: Rs
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [800, 660]
+    rotation: 270
+    state: enabled
+- name: b_demod_constelacion_cb_0_0_0
+  id: b_demod_constelacion_cb
+  parameters:
+    Constelacion: Constelacion1
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [395, 948]
+    rotation: 180
+    state: true
+- name: b_demod_constelacion_cb_0_1
+  id: b_demod_constelacion_cb
+  parameters:
+    Constelacion: Constelacion2
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [396, 896]
+    rotation: 180
+    state: true
+- name: b_mod_constelacion_cb_0_0_0
+  id: b_mod_constelacion_cb
+  parameters:
+    Constelacion: Constelacion2
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [408, 314]
+    rotation: 0
+    state: true
+- name: b_mod_constelacion_cb_0_0_0_0
+  id: b_mod_constelacion_cb
+  parameters:
+    Constelacion: Constelacion1
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [408, 260]
+    rotation: 0
+    state: true
+- name: coding
+  id: epy_module
+  parameters:
+    alias: ''
+    comment: ''
+    source_code: "# this module will be imported in the into your flowgraph\nimport\
+      \ numpy\nimport math\n#######################################################\n\
+      ##        Done by Homero Ortega Boada              ##\n##        comdiguis@saber.uis.edu.co\
+      \                 ##\n##     Universidad Industrial de Santander           ##\n\
+      #######################################################\n#######################################################\n\
+      ##       Constellation map  identification           ##\n#######################################################\
+      \                  \n# Constellation points are analyzed to determine the \n\
+      # the map used for ordering of the constellation points\ndef sum_modulus(a,b,modulus):\n\
+      \    # realiza una suma de a y b en modulo modulus\n    return (a+b)%modulus\n\
+      \ndef angle_map(constellation_points):\n    # esta funcion entrega todos los\
+      \ angulos positivos entre 0 y 2pi\n    angles=numpy.angle(constellation_points)\n\
+      \    return sum_modulus(angles, 2*math.pi, 2*math.pi)\n\ndef inverse_map(constellation_points):\n\
+      \    M=len(constellation_points)\n    angles=angle_map(constellation_points)\n\
+      \    angles=sum_modulus(angles,-angles[0], 2*math.pi) # giro a agulo cero\n\
+      \    delta_angle= 2*math.pi/M     # angulo entre puntos\n    cod_inv=numpy.round(angles/delta_angle)\n\
+      \    cod_inv=cod_inv.astype(numpy.int) #conversion a entero \n    return cod_inv\n\
+      \ndef direct_map(constellation_points):\n    M=len(constellation_points)\n \
+      \   codinv=inverse_map(constellation_points)\n    coddirect=numpy.array([0]*M)\n\
+      \    for j in range(M):\n        temp=numpy.where(codinv==j)\n        coddirect[j]=temp[0][0]\n\
+      \    return coddirect\n\n\"\"\" # SECCION DE PRUEBAS DEL CODIGO\nimport gnuradio.digital\
+      \ as digital\nconstelacion=digital.constellation_8psk().points()\nprint(\"constelacion\
+      \ = \", constelacion)\nmapdirect=direct_map(constelacion)\nprint(\"codigo directo\
+      \ = \", mapdirect)\nmapinverse=inverse_map(constelacion)\nprint(\"codigo inverso\
+      \ = \", mapinverse)\n\"\"\"\n\n\n\n\n\n\n"
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1071, 92]
+    rotation: 0
+    state: enabled
+- name: digital_map_bb_0
+  id: digital_map_bb
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    map: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [403, 165]
+    rotation: 0
+    state: disabled
+- name: import
+  id: import
+  parameters:
+    alias: ''
+    comment: ''
+    imports: import math
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [440, 4]
+    rotation: 0
+    state: enabled
+- name: import_0
+  id: import
+  parameters:
+    alias: ''
+    comment: ''
+    imports: import numpy
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [434, 57]
+    rotation: 0
+    state: enabled
+- name: import_0_0
+  id: import
+  parameters:
+    alias: ''
+    comment: ''
+    imports: from gnuradio import digital
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [930, 12]
+    rotation: 0
+    state: enabled
+- name: qtgui_vector_sink_f_0
+  id: qtgui_vector_sink_f
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    average: '1.0'
+    color1: '"blue"'
+    color10: '"dark blue"'
+    color2: '"red"'
+    color3: '"green"'
+    color4: '"black"'
+    color5: '"cyan"'
+    color6: '"magenta"'
+    color7: '"yellow"'
+    color8: '"dark red"'
+    color9: '"dark green"'
+    comment: ''
+    grid: 'True'
+    gui_hint: ''
+    label1: '"con mapeo"'
+    label10: ''
+    label2: '"sin mapeo"'
+    label3: '"16QAM"'
+    label4: '"BPSK"'
+    label5: ''
+    label6: ''
+    label7: ''
+    label8: ''
+    label9: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    name: '"Curvas de SER"'
+    nconnections: '2'
+    ref_level: '0'
+    showports: 'True'
+    update_time: '0.10'
+    vlen: N_snr
+    width1: '6'
+    width10: '1'
+    width2: '6'
+    width3: '6'
+    width4: '6'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    x_axis_label: '"Es/N0 [dB]"'
+    x_start: EsN0min
+    x_step: (EsN0max-EsN0min)/float(N_snr)
+    x_units: '"dB"'
+    y_axis_label: '"log(Pe)"'
+    y_units: '""'
+    ymax: '0'
+    ymin: '-5'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1120, 798]
+    rotation: 0
+    state: enabled
+- name: virtual_source_0_0_0_0
+  id: virtual_source
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: RX0
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [908, 472]
+    rotation: 270
+    state: enabled
+- name: virtual_source_0_0_1
+  id: virtual_source
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: RX1
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [796, 472]
+    rotation: 270
+    state: enabled
+- name: virtual_source_0_1_0
+  id: virtual_source
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: TX1
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [828, 472]
+    rotation: 270
+    state: enabled
+- name: virtual_source_0_1_0_0
+  id: virtual_source
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: TX0
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [940, 472]
+    rotation: 270
+    state: enabled
+- name: vs0_0_0
+  id: virtual_sink
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: TX0
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [336, 528]
+    rotation: 270
+    state: enabled
+- name: vs0_1
+  id: virtual_sink
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: TX1
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [296, 528]
+    rotation: 270
+    state: enabled
+- name: vs1_0_0
+  id: virtual_sink
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: RX0
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [198, 667]
+    rotation: 90
+    state: enabled
+- name: vs1_1
+  id: virtual_sink
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: RX1
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [238, 667]
+    rotation: 90
+    state: enabled
+
+connections:
+- [analog_random_source_x_0_0, '0', b_mod_constelacion_cb_0_0_0, '0']
+- [analog_random_source_x_0_0, '0', vs0_1, '0']
+- [analog_random_source_x_1, '0', b_mod_constelacion_cb_0_0_0_0, '0']
+- [analog_random_source_x_1, '0', vs0_0_0, '0']
+- [b_BERTool_0_0_0, '0', b_demod_constelacion_cb_0_0_0, '0']
+- [b_BERTool_0_0_0, '1', qtgui_vector_sink_f_0, '0']
+- [b_BERTool_0_1, '0', b_demod_constelacion_cb_0_1, '0']
+- [b_BERTool_0_1, '1', qtgui_vector_sink_f_0, '1']
+- [b_demod_constelacion_cb_0_0_0, '0', vs1_0_0, '0']
+- [b_demod_constelacion_cb_0_1, '0', vs1_1, '0']
+- [b_mod_constelacion_cb_0_0_0, '0', b_BERTool_0_1, '0']
+- [b_mod_constelacion_cb_0_0_0_0, '0', b_BERTool_0_0_0, '0']
+- [virtual_source_0_0_0_0, '0', b_BERTool_0_0_0, '2']
+- [virtual_source_0_0_1, '0', b_BERTool_0_1, '2']
+- [virtual_source_0_1_0, '0', b_BERTool_0_1, '1']
+- [virtual_source_0_1_0_0, '0', b_BERTool_0_0_0, '1']
+
+metadata:
+  file_format: 1
